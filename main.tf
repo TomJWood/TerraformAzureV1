@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "rg" {
   location = var.resource_group_location
-  name     = "Dev Env - US - 001"
+  name     = "uat-account-api"
 }
 
 
