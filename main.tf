@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "rg" {
 
 
 # Create virtual network
-resource "azurerm_virtual_network" "vnet" {
+resource "azurerm_virtual_network" "AzureVnet" {
     name = "${random_pet.prefix.id}-vnet"
     address_space = ["10.0.0.0/16"]
     location = azurerm_resource_group.rg.location
@@ -13,7 +13,7 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 # Create subnet
-resource "azurerm_subnet" "Dev_US_001_Subnet" {
+resource "azurerm_subnet" "AzureSubnet" {
   name = "${random_pet.prefix.id}-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.Dev_US_001_Network.name
@@ -21,7 +21,7 @@ resource "azurerm_subnet" "Dev_US_001_Subnet" {
 }
 
 # Create public IPs
-resource "azurerm_public_ip" "Dev_US_001_public_ip" {
+resource "azurerm_public_ip" "AzurePublic_ip" {
   name                = "${random_pet.prefix.id}-public-ip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -29,7 +29,7 @@ resource "azurerm_public_ip" "Dev_US_001_public_ip" {
 }
 
 # Create Network Security Group and rules
-resource "azurerm_network_security_group" "Dev_US_001_nsg" {
+resource "azurerm_network_security_group" "AzureNsg" {
   name                = "${random_pet.prefix.id}-nsg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -59,7 +59,7 @@ resource "azurerm_network_security_group" "Dev_US_001_nsg" {
 }
 
 # Create network interface
-resource "azurerm_network_interface" "Dev_US_001_nic" {
+resource "azurerm_network_interface" "Azure_nic" {
   name                = "${random_pet.prefix.id}-nic"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -79,7 +79,7 @@ resource "azurerm_network_interface_security_group_association" "nic_sga" {
 }
 
 # Create storage account for boot diagnostics
-resource "azurerm_storage_account" "Dev_US_001_StorageAccount" {
+resource "azurerm_storage_account" "AzureStorageAccount" {
   name                     = "diag${random_id.random_id.hex}"
   location                 = azurerm_resource_group.rg.location
   resource_group_name      = azurerm_resource_group.rg.name
